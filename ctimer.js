@@ -991,6 +991,9 @@ function rebuildLogs(){
 
 // Reubild the time log only
 function rebuildTimeLog(fromTime){
+	if(fromTime < 0){
+		fromTime = 0;
+	}
 	var timeLog = document.getElementById("tab_times");
 	for(var i = fromTime; i < iSolve; i++){
 		logTime(timeLog, timeData[i][nSteps], i);
