@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Random-State 2x2x2 Scramble Generator</title>
+		<script type="text/javascript" src="solver2x2.js">
+		</script>
+		<script type="text/javascript">
+			function genScrambles(){
+				for(var i = 1; i <= 5; i++)
+					document.getElementById("s" + i).innerHTML
+						= genScramble2x2();
+			}
+		</script>
+	</head>
+	<body onload="initSolver2x2();genScrambles()">
+		<h1>Random-State 2x2x2 Scramble Generator</h1>
+		<hr/>
+		<span id="s1"></span>
+		<hr/>
+		<span id="s2"></span>
+		<hr/>
+		<span id="s3"></span>
+		<hr/>
+		<span id="s4"></span>
+		<hr/>
+		<span id="s5"></span>
+		<hr/>
+		<a href="#" onclick="genScrambles(); return false;">Click for new scrambles</a>
+	</body>
+</html>

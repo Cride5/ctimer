@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>weeTimer (v0.1) - Handheld Rubik's Cube Timer</title>
+		<meta name="description"        content="Online JavaScript timer for timing your Rubik's cube solves from handheld devices. Includes statistics, and scrambles for 2x22x to 7x7x7, megaminx, pyraminx and square-1."/>
+		<meta name="keywords"           content="ctimer, timer, cube timer, handheld timer, mobile timer, rubik's timer, rubiks timer, rubik's cube timer, rubiks cube timer, rubix cube timer, javascript timer, rubiks"/>
+		<meta name="resource-type"      content="document"/>
+		<meta name="language"           content="English"/>
+
+		<meta name="rating"             content="general"/>
+		<meta name="robots"             content="all"/>
+		<meta name="expires"            content="never"/>
+		<meta name="revisit-after"      content="14 days"/>
+		<meta name="distribution"       content="global"/>
+		<meta name="author"             content="Conrad Rider"/>
+		<meta name="copyright"          content="Copyright 2009-2010 Conrad Rider"/>
+		<meta http-equiv="Content-Type" content="text/html; iso-8859-1"/>
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<script type="text/javascript" src="solver2x2.js">
+		</script>
+		<script type="text/javascript" src="sq1_scrambler.js">
+		</script>
+		<script type="text/javascript" src="pyra_scrambler.js">
+		</script>
+		<script type="text/javascript" src="weetimer.js">
+		</script>
+		<style media="screen" type="text/css">
+			@import url("weetimer.css");
+		</style>
+		<link rel="stylesheet" type="text/css" href="ctimer_white.css" title="White"/>
+		<link rel="alternate stylesheet" type="text/css" href="ctimer_black.css" title="Black"/>
+	</head>
+	<body onload="init()" onkeyup="startTimer(event)" onkeydown="stopTimer(event)" onmousedown="hideMenus(event)">
+		<div id="header">
+			<!--a href="http://www.ctimer.co.uk"><img id="headimg" src="ctimer.gif" alt="cTimer"/></a-->
+			<div id="sbox"><a href="#" onclick="popupPzlMenu(event); return false;" title="Click to change puzzle..."><span id="scramble"></span></a></div>
+		</div>
+		<div id="time_box"><a href="#" onmousedown="mouse_activate(event)" title="Click to start/stop timer..."><span id="time"></span></a></div>
+		<div id="features">
+			<div id="ftabs" class="showline">
+				<a id="link_times" class="tab_link" href="#" onclick="toggleTab('times'); return false;" title="Toggle times tab...">times</a> &nbsp;&nbsp;
+				<a id="link_options" class="tab_link"  href="#" onclick="toggleTab('options'); return false;" title="Toggle options tab...">options</a> &nbsp;&nbsp;
+				<a id="link_info" class="tab_link"  href="#" onclick="toggleTab('info'); return false;" title="Toggle info tab...">info</a>
+			</div>
+			<div id="fbox" class="minimised">
+				<div id="summary_box">
+					<div id="sm_reset"><a href="#"
+						onclick="if(confirm('This will reset the time log. Are you sure?')) reset(); return false;">reset</a></div>
+					#<span id="sm_no">0</span>&nbsp;&nbsp;
+					bs:<span id="sm_bs">0.00</span>&nbsp;&nbsp;
+					<a id="hd_a5" href="#" onclick="selectAvg(1, true); return false;" class="hl0">a5</a>:<span id="sm_a5">0.00</span>&nbsp;&nbsp;
+					<a id="hd_a12" href="#" onclick="selectAvg(2, true); return false;" class="hl0">a12</a>:<span id="sm_a12">0.00</span>&nbsp;&nbsp;
+					<a id="hd_av" href="#" onclick="selectAvg(0, true); return false;" class="hl1">av</a>:<span id="sm_av">0.00</span>&nbsp;&nbsp;
+					ws:<span id="sm_ws">0.00</span>&nbsp;&nbsp;
+					st:<span id="sm_st">0.0%</span></div>
+				<div id="tab_times" class="tab_hidden"></div>
+				<div id="tab_options" class="tab_hidden">
+					<form action="javascript:void(null)">
+					<ul>
+						<li>Inspection <input id="config0" type="text" class="inputbox" size="2"  onfocus="setConfig(0, this.value)" onkeyup="setConfig(0, this.value)"/> sec</li>
+						<li>Use dark stylesheet <a href="#" onmousedown="toggleConfig(1, this); return false;"><img id="cfimg1" src="check_off.gif" alt=""/></a></li>
+						<li>Show current averages <a href="#" onmousedown="toggleConfig(9, this); return false;"><img id="cfimg9" src="check_on.gif" alt=""/></a></li>
+					</ul>
+					</form>
+				</div>
+				<div id="tab_info" class="tab_hidden">
+					<h2><a name="ack">Acknowledgements</a></h2>
+						<ul>
+							<li>Many thanks to <a href="http://www.jaapsch.net/puzzles/" title="Visit Jaap's homepage">Jaap Scherphuis</a> for his <a href="http://www.jaapsch.net/puzzles/indxjscr.htm" title="Download the 2x2 JS solver">JavaScript 2x2 solver</a> and pyraminx scrambler. This is allows short random-state scrambles to be generated for the 2x2x2 cube and Pyraminx. Thanks also for his square-1 scramble program.</li>
+						</ul>
+					<h2><a name="faq">FAQ</a></h2>
+					<ul>
+						<li><em>How do I start and stop the timer?</em><br/>
+							Press and hold space. When it is released the timer will start.
+							The timer will then stop when space, or any other alphanumeric key is pressed.
+							The timer can also be started and stopped by clicking over the main time display.</li>
+						<li><em>How do I generate scrambles for other puzzles?</em><br/>
+							Click over the scramble and select the puzzle from the popup menu.</li>
+						<li><em>How do I set the time to a +2 penalty, DNF, or remove it altogether?</em><br/>
+							Click on the 'times' tab, and then click over the most recent time.</li>
+						<li><em>How do I hide the tab contents?</em><br/>
+							Click over the link for the currently selected (bold) tab.</li>
+						<li><em>How do I remove logged times?</em><br/>
+							Click on the 'times' tab and then click over the time to remove.</li>
+						<li><em>Does cTimer generate statistics on my times?</em><br/>
+							Yes, click on any tab. Statistics appear at the top of each tab window.</li>
+						<li><em>What do the abbriviated headings in the statistics represent.</em><br/>
+							<em>#</em> = solve number,
+							<em>bs</em> = best time,
+							<em>a5</em> = best/current average of 5,
+							<em>a12</em> = best/current average of 12,
+							<em>av</em> = overall average,
+							<em>ws</em> = worst time,
+							<em>sd</em> = standard deviation.
+						</li>
+						<li><em>What is 'standard deviation'?</em><br/>
+							It gives a measure of your consistency.
+							In cTimer it is presented as a percentage of the average.
+							Closer to 0% means your times are more consistent.</li>
+						<li><em>How do I clear the time log?</em><br/>
+							Click on any tab and click the 'reset' link in the top right.</li>
+						<li><em>How can I see which times correspond to averages of 5, 12 etc?</em><br/>
+							Click on the 'times' tab and click on the associated statistics heading,
+							for example 'a12'. This will highlight the times in the time tab. Click on the 'av' heading
+							to un-highlight the average.</li>
+						<li><em>How can I view my last scramble(s)?</em><br/>
+							Click on any tab and click on the 'av' heading twice.
+							This will display all scrambles and their corresponding times in a pop up window.</li>
+						<li><em>How do I enable random-state scrambles?</em><br/>
+							Random-state scrambles are enabled by default for the 2x2x2 cube and pyraminx.
+							In this stripped down version of cTimer, random state scrambles are not avaiable
+							for 3x3 cubes or above.
+							</li>
+						<li><em>How do I set the timer to count down my inspection time?</em><br/>
+							Click on the 'options' tab and enter a value in seconds for inspection.
+							Standard WCA inspection is 15 seconds.</li>
+						<li><em>How does the inspection time feature work?</em><br/>
+							Press space to start the inspection count down. When you have finished
+							inspection, press space again to start the timer.
+							Once the inspection time has passed a further 2 seconds is given.
+							If inspection is completed within these 2
+							extra seconds a time penalty of 2 seconds will apply
+							(denoted as a '+' symbol after the time). If the timer is not started
+							after the inspection time plus 2 seconds, then the result is a DNF.</li>
+						<li><em>How do I turn the inspection feature off?</em><br/>
+							Click on the 'options' tab and set the inspection time to 0 sec.</li>
+						<li><em>I noticed a bug in the program, how do I report it?</em><br/>
+							Send an email to the author using
+							<a href="http://www.crider.co.uk">this contact form</a>.
+							Please be sure to include a description of how to reproduce the error.</li>
+						<li><em>I would like a feature to be added to the timer.</em><br/>
+							Features may be requested via the author's contact form (link above).
+							Any planned features will be added to the planned features list below...</li>
+						<li><em>Is weeTimer open source?</em><br/>
+							Currently the code is not licensed as open-source and is subject to copyright.
+							This means permission is not given to modify the source. The code may eventually
+							be open-sourced once it has been better developed and tested.</li>
+					</ul>
+					
+					<h2><a name="planned">Considered Features</a></h2>
+					<ol>
+						<li>Scrambles for Rubik's Clock</li>
+					</ol>
+					Development of these features is subject to demand. If you would like to see any of
+					these features, or you have another feature request please let me know. Thanks.
+					<br/><br/>
+					<div style="text-align:center">
+						<a href="http://www.crider.co.uk">Request a feature or report a problem</a>
+					</div>
+					<br/><br/>
+				</div>
+			</div>
+		</div>
+		<div id="pzl_menu" class="menu_hidden">
+			<table id="pzl_table" onmouseover="showPzlMenu()">
+				<tr><th>Puzzle:</th></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(2); return false;">2x2x2</a></td></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(3); return false;">3x3x3</a></td></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(4); return false;">4x4x4</a></td></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(5); return false;">5x5x5</a></td></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(6); return false;">6x6x6</a></td></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(7); return false;">7x7x7</a></td></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(11); return false;">Square-1</a></td></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(12); return false;">Pyraminx</a></td></tr>
+				<tr><td><a href="#" onmousedown="selectPuzzle(13); return false;">Megaminx</a></td></tr>
+			</table>
+		</div>
+		<div id="detail_box" class="tab_hidden"><div id="tab_detail"></div></div>
+		<div id="footer">
+			Copyright &#169; 2009-2010 <a href="http://www.crider.co.uk">Conrad Rider</a>. All rights reserved.<br/>
+			Part of <a href="http://cube.crider.co.uk">cube.crider.co.uk</a>. <a href="http://validator.w3.org/check?uri=referer" title="Valid XHTML 1.0">Valid XHTML 1.0</a>. Switch to <a href="http://www.ctimer.co.uk">cTimer</a>...
+		</div>
+	</body>
+</html>
+

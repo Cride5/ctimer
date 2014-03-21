@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>cTimer (v1.45) - Rubik's Cube Timer</title>
+		<meta name="description"        content="Online JavaScript timer for timing your Rubik's cube solves. Includes statistics, timing breakdowns, random-state scrambles, scramble images and scrambles for 2x22x to 7x7x7, megaminx, pyraminx and square-1."/>
+		<meta name="keywords"           content="ctimer, timer, cube timer, rubiks timer, multi stage timer, multistage timer, rubik's timer, rubik's cube timer, rubiks cube timer, rubix cube timer, javascript timer, rubiks, multi-stage, multistage, multi-step, multistep, breakdown, breakdowns"/>
+		<meta name="resource-type"      content="document"/>
+		<meta name="language"           content="English"/>
+
+		<meta name="rating"             content="general"/>
+		<meta name="robots"             content="all"/>
+		<meta name="expires"            content="never"/>
+		<meta name="revisit-after"      content="14 days"/>
+		<meta name="distribution"       content="global"/>
+		<meta name="author"             content="Conrad Rider"/>
+		<meta name="copyright"          content="Copyright 2009-2010 Conrad Rider"/>
+		<meta http-equiv="Content-Type" content="text/html; iso-8859-1"/>
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<script type="text/javascript" src="solver2x2.js">
+		</script>
+		<script type="text/javascript" src="sq1_scrambler.js">
+		</script>
+		<script type="text/javascript" src="pyra_scrambler.js">
+		</script>
+		<script type="text/javascript" src="ctimer.js">
+		</script>
+		<style media="screen" type="text/css">
+			@import url("ctimer.css");
+		</style>
+		<link rel="stylesheet" type="text/css" href="ctimer_white.css" title="White"/>
+		<link rel="alternate stylesheet" type="text/css" href="ctimer_black.css" title="Black"/>
+	</head>
+	<body onload="init()" onkeyup="startTimer(event)" onkeydown="stopTimer(event)" onmousedown="hideMenus(event)">
+		<div id="header">
+			<div id="simg"><a href="#" onclick="popupPzlMenu(event); return false;" title="Click to change puzzle or orientation...">
+				<img id="cubeimg" src="cube.png" width="150" height="150" alt="Scramble Image"/></a></div>
+			<!--h1>cTimer</h1-->
+			<a href="http://www.ctimer.co.uk"><img id="headimg" src="ctimer.gif" alt="cTimer"/></a>
+			<div id="sbox"><a href="#" onclick="popupPzlMenu(event); return false;" title="Click to change puzzle...">Scramble: <span id="scramble"></span></a></div>
+		</div>
+		<div id="time_box"><a href="#" onclick="toggleTime(); return false;" title="Click to apply penalty or remove..."><span id="time"></span></a><noscript><p>JavaScript Unavailable</p></noscript></div>
+		<div id="features">
+			<div id="ftabs" class="showline">
+				<a id="link_times" class="tab_link" href="#" onclick="toggleTab('times'); return false;" title="Toggle times tab...">times</a> &nbsp;&nbsp;
+				<a id="link_stats" class="tab_link" href="#" onclick="toggleTab('stats'); return false;" title="Toggle stats tab...">stats</a> &nbsp;&nbsp;
+				<a id="link_breakdowns" class="tab_link"  href="#" onclick="toggleTab('breakdowns'); return false;" title="Toggle breakdowns tab...">breakdowns</a> &nbsp;&nbsp;
+				<a id="link_options" class="tab_link"  href="#" onclick="toggleTab('options'); return false;" title="Toggle options tab...">options</a> &nbsp;&nbsp;
+				<a id="link_info" class="tab_link"  href="#" onclick="toggleTab('info'); return false;" title="Toggle info tab...">info</a>
+			</div>
+			<div id="fbox" class="minimised">
+				<div id="summary_box">
+					<div id="sm_reset"><a href="#"
+						onclick="if(confirm('This will reset the time log. Are you sure?')) reset(); return false;">reset</a></div>
+					solves:<span id="sm_solves">0</span>&nbsp;&nbsp;
+					<span id="avgh">avg</span>:<span id="sm_avg">0.00</span>&nbsp;&nbsp;
+					best:<span id="sm_best">0.00</span>&nbsp;&nbsp;
+					worst:<span id="sm_worst">0.00</span>&nbsp;&nbsp;
+					std:<span id="sm_std">0.0%</span></div>
+				<div id="tab_stats" class="tab_hidden">
+					solves: <span id="stats_solves">0</span>&nbsp;|
+					DNFs: <span id="stats_dnf">0</span>&nbsp;|
+					penalties: <span id="stats_pnl">0</span>&nbsp;|
+					session time: <span id="stats_stime">0:00</span><br/>
+					<br/>
+					<table id="stats_table1">
+						<tr><td class="thead">session&nbsp;avg:</td><td>0.00</td><td>&nbsp;|&nbsp;</td><td class="thead">best:</td><td>0.00</td><td>&nbsp;|&nbsp;</td><td class="thead">worst:</td><td>0.00</td><td>&nbsp;|&nbsp;</td><td class="thead">std:</td><td>0.0%</td></tr>
+					</table>
+					<br/>
+					<table id="stats_table2"><tr><td/></tr></table>
+				</div>
+				<div id="tab_times" class="tab_hidden"></div>
+				<div id="tab_breakdowns" class="tab_hidden">
+					<div style="margin-top:20px; text-align:center; width:450px; margin:0 auto">
+						<a href="#" onclick="delStep(); return false">&lt; fewer steps</a> |
+						<a href="#" onclick="addStep(); return false;">more steps &gt;</a></div>				
+					<table id="breakdown_table">
+						<tr><td class="thead">best:</td><td>0.0</td><td>0.0</td><td></td></tr>
+						<tr><td class="thead">worst:</td><td>0.0</td><td>0.0</td><td></td></tr>
+						<tr><td class="thead">avg:</td><td>0.0</td><td>0.0</td><td></td></tr>
+						<tr><td class="thead">std:</td><td>0%</td><td>0%</td><td></td></tr>
+						<tr><td class="thead">solve</td><td class="thead">step 1</td><td class="thead">total</td><td></td></tr>
+						<tr><td class="thead">1</td><td>0.0</td><td>0.0</td><td></td></tr>
+					</table>
+				</div>
+				<div id="tab_options" class="tab_hidden">
+					<form action="javascript:void(null)">
+					<ul>
+						<li>Display Timer <a href="#" onclick="toggleConfig(10, this); return false;"><img id="cfimg10" src="check_on.gif" alt=""/></a></li>
+						<li>Centisecond Timing <a href="#" onclick="toggleConfig(9, this); return false;"><img id="cfimg9" src="check_on.gif" alt=""/></a></li>
+						<li>Inspection <input id="config0" type="text" class="inputbox" size="2"  onfocus="setConfig(0, this.value)" onkeyup="setConfig(0, this.value)"/> sec</li>
+						<li>Use dark stylesheet <a href="#" onclick="toggleConfig(1, this); return false;"><img id="cfimg1" src="check_off.gif" alt=""/></a></li>
+						<li>Generate scramble images <a href="#" onclick="toggleConfig(2, this); return false;"><img id="cfimg2" src="check_on.gif" alt=""/></a></li>
+						<li>Use 3x3x3 random-state scrambler <a href="#" onclick="toggleConfig(7, this); return false;"><img id="cfimg7" src="check_off.gif" alt=""/></a>
+							<br/>&nbsp;&nbsp;&nbsp;&nbsp;<small>Requires <em>Sun</em> Java Plugin.
+							2.6 MB auto download on first use, please wait...</small></li>
+					</ul>
+					</form>
+				</div>
+				<div id="tab_info" class="tab_hidden">
+					<h2><a name="ack">Acknowledgements</a></h2>
+						<ul>
+							<li>A big thanks to Herbert Kociemba for his Java implementation of the <a href="http://kociemba.org/download.htm" title="Download the two-phase solver">two-phase algorithm</a>. Without this random-state scrambles for the 3x3x3 cube would not be possible. Thanks also to Jeremy Fleischman for his Java scrambler library which uses file-based lookup tables to save on load time.</li>
+							<li>Many thanks to <a href="http://www.jaapsch.net/puzzles/" title="Visit Jaap's homepage">Jaap Scherphuis</a> for his <a href="http://www.jaapsch.net/puzzles/indxjscr.htm" title="Download the 2x2 JS solver">JavaScript 2x2 solver</a> and pyraminx scrambler. This is allows short random-state scrambles to be generated for the 2x2x2 cube and Pyraminx. Thanks also for his square-1 scramble program.</li>
+						</ul>
+					<h2><a name="faq">FAQ</a></h2>
+					<ul>
+						<li><em>How do I start and stop the timer?</em><br/>
+							Press and hold space. When it is released the timer will start.
+							The timer will then stop when space, or any other alphanumeric key is pressed.</li>
+						<li><em>How do I generate scrambles for other puzzles?</em><br/>
+							Click over the cube or scramble and select the puzzle from the popup menu.</li>
+						<li><em>How do a change the orientation of the scrambled cube?</em><br/>
+							Click over the cube or scramble and select the orientation from the popup menu.</li>
+						<li><em>How do I set the time to a +2 penalty, DNF, or remove it altogether?</em><br/>
+							Click on the time.</li>
+						<li><em>How do I hide the tab contents?</em><br/>
+							Click over the link for the currently selected (bold) tab.</li>
+						<li><em>How do I remove times other than the most recent one?</em><br/>
+							Click on the 'times' tab and then click over the time to remove.</li>
+						<li><em>Does cTimer generate statistics on my times?</em><br/>
+							Yes, click on the 'stats' tab.</li>
+						<li><em>What does 'std' mean under statistics?</em><br/>
+							Standard Deviation. It gives a measure of your consistency.
+							In cTimer it is presented as a percentage of the average.
+							Closer to 0% means your times are more consistent.</li>
+						<li><em>How do I clear the time log?</em><br/>
+							Click on any tab and click the 'reset' link in the top right.</li>
+						<li><em>How can I see which times correspond to averages of 5, 12 etc?</em><br/>
+							Click on the 'stats' tab and click on the table heading, for example 'best avg5'.
+							This will highlight the times in the 'time' tab. Click on the 'overall avg' heading
+							to un-highlight the average.</li>
+						<li><em>How can I view my last scramble(s)?</em><br/>
+							Click on the 'stats' tab and click on the 'overall avg' heading twice.
+							This will display all scrambles and their corresponding times in a pop up window.</li>
+						<li><em>How do I enable random-state scrambles?</em><br/>
+							Random-state scrambles are enabled by default for the 2x2x2 cube and pyraminx.
+							To enable random state scrambling for the 3x3x3 cube, click on the
+							'options' tab and set the 'Use 3x3x3 random-state scrambler' option
+							to checked. If the java applet supplying the scrambles fails to load, it will
+							revert back to normal mode (a sequence of 25 random moves).
+							</li>
+						<li><em>What does the 'breakdowns' tab do?</em><br/>
+							It allows you to divide your solve into a number of stages, to get statistics
+							on each sub-stage.</li>
+						<li><em>How do I change the number of steps in my solve breakdown?</em><br/>
+							Click on the 'breakdowns' tab and select 'fewer steps' or 'more steps'</li>
+						<li><em>How do I set the timer to count down my inspection time?</em><br/>
+							Click on the 'options' tab and enter a value in seconds for inspection.
+							Standard WCA inspection is 15 seconds.</li>
+						<li><em>How does the inspection time feature work?</em><br/>
+							Press space to start the inspection count down. When you have finished
+							inspection, press space again to start the timer.
+							Once the inspection time has passed a further 2 seconds is given.
+							If inspection is completed within these 2
+							extra seconds a time penalty of 2 seconds will apply
+							(denoted as a '+' symbol after the time). If the timer is not started
+							after the inspection time plus 2 seconds, then the result is a DNF.</li>
+						<li><em>How do I turn the inspection feature off?</em><br/>
+							Click on the 'options' tab and set the inspection time to 0 sec.</li>
+						<li><em>I noticed a bug in the program, how do I report it?</em><br/>
+							Send an email to the author using
+							<a href="http://www.crider.co.uk">this contact form</a>.
+							Please be sure to include a description of how to reproduce the error.</li>
+						<li><em>I would like a feature to be added to the timer.</em><br/>
+							Features may be requested via the author's contact form (link above).
+							Any planned features will be added to the planned features list below...</li>
+						<li><em>Is cTimer open source?</em><br/>
+							Currently the code is not licensed as open-source and is subject to copyright.
+							This means permission is not given to modify the source. The code may eventually
+							be open-sourced once it has been better developed and tested.</li>
+					</ul>
+					
+					<h2><a name="planned">Considered Features</a></h2>
+					<ol>
+						<li>Interface with stackmat</li>
+						<li>Update VisualCube to generate scramble images for more puzzles</li>
+						<li>Scrambles for Rubik's Clock</li>
+						<li>Export of times as csv</li>
+						<li>Graphs</li>
+					</ol>
+					Development of these features is subject to demand. If you would like to see any of
+					these features, or you have another feature request please let me know. Thanks.
+					<br/><br/>
+					<div style="text-align:center">
+						<a href="http://www.crider.co.uk">Request a feature or report a problem</a>
+					</div>
+					<br/><br/>
+				</div>
+			</div>
+		</div>
+		<div id="applet_box"></div>
+		<!--
+			<applet  name="scrambleApplet" id="scrambleAppletId" codebase="." archive="JCubeExplorer.jar"
+			code="org.kociemba.twophase.ScramblerApplet"
+			width="1" height="1" MAYSCRIPT>
+			<param name="mayscript" value="true" />
+			<param name="scriptable" value="true" />
+			<param name="gui" value="false" />
+			</applet>
+		</div-->
+		<div id="pzl_menu" >
+			<table id="pzl_table" class="menu_hidden" onmouseover="showPzlMenu()">
+				<tr><th>Puzzle:</th></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(2); return false;">2x2x2</a></td></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(3); return false;">3x3x3</a></td></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(4); return false;">4x4x4</a></td></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(5); return false;">5x5x5</a></td></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(6); return false;">6x6x6</a></td></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(7); return false;">7x7x7</a></td></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(11); return false;">Square-1</a></td></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(12); return false;">Pyraminx</a></td></tr>
+				<tr><td><a href="#" onclick="selectPuzzle(13); return false;">Megaminx</a></td></tr>
+				<tr><th><hr/></th></tr>
+				<tr><td onmouseover="showTopMenu()">Orientation &gt;</td></tr>
+			</table>
+			<table id="top_table" class="menu_hidden" onmouseout="hideTopMenu()" onmouseover="showTopMenu()">
+				<tr><th onmouseout="">Top Colour:</th></tr>
+				<tr><td onmouseover="showFrontMenu(0)">Yellow &gt;</td></tr>
+				<tr><td onmouseover="showFrontMenu(1)">White &gt;</td></tr>
+				<tr><td onmouseover="showFrontMenu(2)">Blue &gt;</td></tr>
+				<tr><td onmouseover="showFrontMenu(3)">Green &gt;</td></tr>
+				<tr><td onmouseover="showFrontMenu(4)">Red &gt;</td></tr>
+				<tr><td onmouseover="showFrontMenu(5)">Orange &gt;</td></tr>
+			</table>
+			<table id="front_table" class="menu_hidden" onmouseover="showFrontMenu(-1)" onmouseout="hideFrontMenu()">
+				<tr><th>Front Colour:</th></tr>
+				<tr><td><a href="#" onclick="selectOri(0); return false;">Yellow</a></td></tr>
+				<tr><td><a href="#" onclick="selectOri(1); return false;">White</a></td></tr>
+				<tr><td><a href="#" onclick="selectOri(2); return false;">Blue</a></td></tr>
+				<tr><td><a href="#" onclick="selectOri(3); return false;">Green</a></td></tr>
+				<tr><td><a href="#" onclick="selectOri(4); return false;">Red</a></td></tr>
+				<tr><td><a href="#" onclick="selectOri(5); return false;">Orange</a></td></tr>
+			</table>
+		</div>
+		<div id="detail_box" class="tab_hidden"><div id="tab_detail"></div></div>
+		<div id="footer">
+			Copyright &#169; 2009-2011 <a href="http://www.crider.co.uk">Conrad Rider</a>. All rights reserved.<br/>
+			Part of <a href="http://cube.crider.co.uk">cube.crider.co.uk</a>. <a href="http://validator.w3.org/check?uri=referer" title="Valid XHTML 1.0">Valid XHTML 1.0</a>. Switch to <a href="http://www.ctimer.co.uk/wee">weeTimer</a>...
+		</div>
+	</body>
+</html>
+

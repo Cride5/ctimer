@@ -1,0 +1,98 @@
+body{
+	background-color:white;
+}
+a{
+	color:#0000F3;
+}
+#header h1{
+	color:#0000F3;
+}
+#header #sbox {
+	color:#555;
+}
+#header #sbox a{
+	color:#555;
+}
+.menu{
+	border:2px solid #0000F3;
+	color:#555;
+	background-color:#f1f1f3;
+
+}
+.menu td:hover{
+	background-color:#DDD;	
+}
+.menu td:hover.td_grey{
+	background-color:#f1f1f3;
+}
+.menu .td_active{
+	background-color:#DDD;	
+}
+.menu a{
+	color:#555;
+}
+.menu .td_grey a{
+	cursor:default;
+	color:#AAA;
+}
+#tab_times a{
+	color:#555;
+}
+
+#time_box a{
+	color:#1c0055;
+}
+
+#ftabs a{
+	color:#0000F3;
+
+}
+#fbox{
+	border:2px solid #0000F3;
+	color:#555;
+	background-color:#f1f1f3;
+
+
+}
+#summary_box{
+	background-color:#DDD;
+}
+.inputbox{
+	background-color:#f1f1f3;
+}
+
+.showline{
+	border-bottom:1px solid #0000F3;
+}
+
+.hilight{
+/*	background-color:#e5eaef;*/
+	border-bottom:1px solid black;
+}
+.hilightbest{
+	background-color:#c9e7bc;
+	border-bottom:1px solid black;
+}
+.hilightworst{
+	background-color:#e7bcc0;
+	border-bottom:1px solid black;
+}
+
+.thead a, .hl0{
+	color:#555;
+}
+.theadh, .hl1{
+	color:#0000F3;
+}
+#detail_box div{
+	border:2px solid #0000F3;
+	color:#555;
+	background-color:#f1f1f3;
+}
+#footer{
+	color:#AAA;
+}
+#footer a{
+	color:#AAA;
+}
+

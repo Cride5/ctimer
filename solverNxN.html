@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<script type="text/javascript" src="solver2x2.js">
+		</script>
+		<script type="text/javascript" src="ctimer.js">
+		</script>
+		<script type="text/javascript">
+			function genScrambles(){
+				document.getElementById("s2").innerHTML = genScrambleNxN(2, 15);
+				document.getElementById("s3").innerHTML = genScrambleNxN(3, 25);
+				document.getElementById("s4").innerHTML = genScrambleNxN(4, 40);
+				document.getElementById("s5").innerHTML = genScrambleNxN(5, 60);
+				document.getElementById("s6").innerHTML = genScrambleNxN(6, 80);
+				document.getElementById("s7").innerHTML = genScrambleNxN(7, 100);
+			}
+		</script>
+	</head>
+	<body onload="initConstants();genScrambles()" onclick="genScrambles()">
+		<span id="s2"></span>
+		<hr/>
+		<span id="s3"></span>
+		<hr/>
+		<span id="s4"></span>
+		<hr/>
+		<span id="s5"></span>
+		<hr/>
+		<span id="s6"></span>
+		<hr/>
+		<span id="s7"></span>
+		<!--hr/>
+		<div id="deb"></div-->
+	</body>
+</html>

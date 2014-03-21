@@ -1,0 +1,289 @@
+body{
+	margin:0;
+	text-align:center;
+	font-size:10pt;
+	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+h2{
+	font-size:1em;
+	font-weight:bold;
+	padding:0;
+	margin:0;
+}
+em{
+	font-style:normal;
+	font-weight:bold;
+}
+#header{
+	display:block;
+	width:630px;
+	height:150px;
+	margin:0 auto;
+	padding:0;
+	text-align:left;
+}
+#header h1{
+	width:200px;
+	margin:0px 0px 10px 30px;
+	padding-top:20px;
+	font-size:3em;
+	font-family:Helvetica, sans-serif;
+	font-weight:bold;
+}
+#header #simg {
+	margin:0;
+	padding:0;
+	float:right;
+}
+#header #sbox {
+	font-weight:bold;
+	font-size:0.8em;
+}
+#header #sbox #scramble{
+	font-weight:normal;
+}
+#header #sbox a{
+	text-decoration:none;
+}
+#header #headimg{
+	margin:0px 0px 10px 30px;
+	padding:25px 0px 5px 0px;
+	border:0;
+	
+}
+#header #cubeimg{
+	border:0;
+}
+#pzl_menu{
+	position:absolute;
+/*	display:none;*/
+	top:0px;
+	left:0px;
+}
+#pzl_table{
+	float:left;
+	width:90px;
+}
+#top_table{
+	position:absolute;
+	bottom:0px;
+	left:80px;
+	width:80px;
+}
+#front_table{
+	position:absolute;
+	bottom:0px;
+	left:150px;
+	width:80px;
+}
+.menu{
+	font-size:0.8em;
+	text-align:left;
+	cursor:default;
+}
+.menu a{
+	text-decoration:none;
+}
+.menu_hidden{
+	visibility:hidden;
+}
+#time_box{
+	clear:both;
+}
+#time_box noscript{
+	font-size:18pt;
+}
+#time_box p{
+	display:inline;
+}
+#time_box a{
+	text-decoration:none;
+}
+#time_box #time{
+	font-family:Ariel, sans-serif;
+	font-weight:bold;
+	text-align:center;
+	font-size:9em;
+}
+#ftabs{
+	width:600px;
+	margin:20px auto 0 auto;
+}
+#ftabs a{
+	text-decoration:none;
+}
+#fbox{
+	width:600px;
+	margin:0 auto;
+	text-align:left;
+}
+#summary_box{
+	height:20px;
+	padding:1px 5px;
+}
+#summary_box span{
+	font-weight:bold;
+}
+#summary_box #avgh{
+	font-weight:normal;
+}
+#sm_reset{
+	padding-right:5px;
+	float:right;
+}
+.showline{
+
+}
+.hideline{
+	border-bottom:0;
+}
+.maximised{
+	height:200px;
+}
+.minimised{
+	height:0px;
+	display:none;
+	visibility:hidden;
+}
+.tab_hidden{
+	display:none;
+}
+.tab_visible{
+	display:block;
+}
+.tab_em{
+	font-weight:bold;
+}
+.tab_link{
+	font-weight:normal;
+}
+#tab_stats{
+	height:174px;
+	overflow-y: scroll;
+	padding: 2px 5px;
+	text-align:center;
+}
+#stats_table1 a{
+	text-decoration:none;
+}
+#stats_table2 a{
+	text-decoration:none;
+}
+#stats_table1 .thead, #stats_table2 .thead{
+	font-weight:normal;
+	text-align:right;
+}
+#stats_table1 .theadh, #stats_table2 .theadh{
+	font-weight:normal;
+	text-align:right;
+}
+#stats_table1 .theadh a, #stats_table2 .theadh a{
+	font-weight:normal;
+	text-decoration:underline;
+	text-align:right;
+}
+#stats_table1{
+	font-size:1em;
+	margin:0 auto;
+	text-align:left;
+}
+#stats_table2{
+	font-size:1em;
+	margin:0 auto;
+	text-align:left;
+}
+#stats_table td{
+	vertical-align:top;
+}
+#tab_times{
+	height:174px;
+	overflow-y: scroll;
+	padding: 2px 5px;
+}
+#tab_times a{
+	text-decoration:none;
+}
+#tab_breakdowns{
+	height:174px;
+	overflow-y: scroll;
+	padding: 2px 5px;
+	text-align:center;
+}
+#breakdown_table{
+	text-align:left;
+	margin:0 auto
+}
+#breakdown_table td{
+	padding:0px 5px;
+	font-size:0.8em;
+}
+#breakdown_table .thead{
+	text-align:right;
+	font-weight: bold;
+}
+#breakdown_table .thead a{
+	text-decoration:none;
+}
+#breakdown_table .theadh{
+	text-align:right;
+	font-weight: bold;
+}
+#breakdown_table .theadh a{
+	text-decoration:none;
+}
+#tab_options{
+	height:174px;
+	overflow-y: scroll;
+	padding: 2px 5px;
+	vertical-align:middle;
+}
+#tab_options ul{
+	list-style-type:none;
+}
+#tab_options img{
+	border:0;
+}
+.inputbox{
+	display:inline;
+	border-top:0;
+	border-left:0;
+	border-right:0;
+	border-bottom:1px solid silver;
+}
+.inputbox:focus{
+	border-bottom:2px solid gray;
+	/**background-color:#e5eaef;*/
+}
+#tab_info{
+	height:174px;
+	overflow-y: scroll;
+	padding: 2px 5px;
+}
+#tab_info li{
+	margin-bottom:15px;
+}
+#applet_box{
+	width:0px;
+	height:0px;
+}
+#detail_box{
+	position:absolute;
+/*	display:none;*/
+	top:151px;
+	left:0;
+	width:100%;
+}
+#tab_detail{
+	width:600px;
+	height:380px;
+	margin:0 auto;
+	padding: 2px 5px;
+	overflow-y: scroll;
+	text-align:left;
+}
+#footer{
+	width:450px;
+	margin:5px auto 0 auto;
+	font-size:0.8em;
+}
+

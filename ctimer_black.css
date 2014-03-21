@@ -1,0 +1,91 @@
+body{
+	background-color:black;
+}
+a{
+	color:#ffff0c;
+}
+#header h1{
+	color:#ffff0c;
+}
+#header #sbox {
+	color:#DDD;
+}
+#header #sbox a{
+	color:#DDD;
+}
+.menu{
+	border:2px solid #ffff0c;
+	color:#AAA;
+	background-color:#1b1b1b;
+
+}
+.menu td:hover{
+	background-color:#444;
+}
+.menu td:hover.td_grey{
+	background-color:#1b1b1b;
+}
+.menu .td_active{
+	background-color:#444;	
+}
+.menu a{
+	color:#AAA;
+}
+.menu .td_grey a{
+	cursor:default;
+	color:#555;
+}
+#tab_times a{
+	color:#AAA;
+}
+
+#time_box a{
+	color:white;
+}
+#fbox{
+	border:2px solid #ffff0c;
+	color:#AAA;
+	background-color:#1b1b1b;
+}
+#summary_box{
+	background-color:#444;
+}
+.inputbox{
+	color:white;
+	background-color:#1b1b1b;
+}
+.showline{
+	border-bottom:1px solid #ffff0c;
+}
+
+.hilight{
+/*	background-color:#e5eaef;*/
+	border-bottom:1px solid white;
+}
+.hilightbest{
+	background-color:#205a24;
+	border-bottom:1px solid white;
+}
+.hilightworst{
+	background-color:#5a2820;
+	border-bottom:1px solid white;
+}
+
+.thead a, .hl0{
+	color:#AAA;
+}
+.theadh, .hl1{
+	color:#ffff0c;
+}
+
+#detail_box div{
+	border:2px solid #ffff0c;
+	color:#AAA;
+	background-color:#1b1b1b;
+}
+#footer{
+	color:#555;
+}
+#footer a{
+	color:#555;
+}
