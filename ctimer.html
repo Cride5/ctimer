@@ -33,27 +33,27 @@
 		<link rel="stylesheet" type="text/css" href="ctimer_white.css" title="White"/>
 		<link rel="alternate stylesheet" type="text/css" href="ctimer_black.css" title="Black"/>
 	</head>
-	<body onload="init()" onkeyup="startTimer(event)" onkeydown="stopTimer(event)" onmousedown="hideMenus(event)">
+	<body onload="CTimer.init()" onkeyup="CTimer.startTimer(event)" onkeydown="CTimer.stopTimer(event)" onmousedown="CTimer.hideMenus(event)">
 		<div id="header">
-			<div id="simg"><a href="#" onclick="popupPzlMenu(event); return false;" title="Click to change puzzle or orientation...">
+			<div id="simg"><a href="#" onclick="CTimer.popupPzlMenu(event); return false;" title="Click to change puzzle or orientation...">
 				<img id="cubeimg" src="cube.png" width="150" height="150" alt="Scramble Image"/></a></div>
 			<!--h1>cTimer</h1-->
 			<a href="http://www.ctimer.co.uk"><img id="headimg" src="ctimer.gif" alt="cTimer"/></a>
-			<div id="sbox"><a href="#" onclick="popupPzlMenu(event); return false;" title="Click to change puzzle...">Scramble: <span id="scramble"></span></a></div>
+			<div id="sbox"><a href="#" onclick="CTimer.popupPzlMenu(event); return false;" title="Click to change puzzle...">Scramble: <span id="scramble"></span></a></div>
 		</div>
-		<div id="time_box"><a href="#" onclick="toggleTime(); return false;" title="Click to apply penalty or remove..."><span id="time"></span></a><noscript><p>JavaScript Unavailable</p></noscript></div>
+		<div id="time_box"><a href="#" onclick="CTimer.toggleTime(); return false;" title="Click to apply penalty or remove..."><span id="time"></span></a><noscript><p>JavaScript Unavailable</p></noscript></div>
 		<div id="features">
 			<div id="ftabs" class="showline">
-				<a id="link_times" class="tab_link" href="#" onclick="toggleTab('times'); return false;" title="Toggle times tab...">times</a> &nbsp;&nbsp;
-				<a id="link_stats" class="tab_link" href="#" onclick="toggleTab('stats'); return false;" title="Toggle stats tab...">stats</a> &nbsp;&nbsp;
-				<a id="link_breakdowns" class="tab_link"  href="#" onclick="toggleTab('breakdowns'); return false;" title="Toggle breakdowns tab...">breakdowns</a> &nbsp;&nbsp;
-				<a id="link_options" class="tab_link"  href="#" onclick="toggleTab('options'); return false;" title="Toggle options tab...">options</a> &nbsp;&nbsp;
-				<a id="link_info" class="tab_link"  href="#" onclick="toggleTab('info'); return false;" title="Toggle info tab...">info</a>
+				<a id="link_times" class="tab_link" href="#" onclick="CTimer.toggleTab('times'); return false;" title="Toggle times tab...">times</a> &nbsp;&nbsp;
+				<a id="link_stats" class="tab_link" href="#" onclick="CTimer.toggleTab('stats'); return false;" title="Toggle stats tab...">stats</a> &nbsp;&nbsp;
+				<a id="link_breakdowns" class="tab_link"  href="#" onclick="CTimer.toggleTab('breakdowns'); return false;" title="Toggle breakdowns tab...">breakdowns</a> &nbsp;&nbsp;
+				<a id="link_options" class="tab_link"  href="#" onclick="CTimer.toggleTab('options'); return false;" title="Toggle options tab...">options</a> &nbsp;&nbsp;
+				<a id="link_info" class="tab_link"  href="#" onclick="CTimer.toggleTab('info'); return false;" title="Toggle info tab...">info</a>
 			</div>
 			<div id="fbox" class="minimised">
 				<div id="summary_box">
 					<div id="sm_reset"><a href="#"
-						onclick="if(confirm('This will reset the time log. Are you sure?')) reset(); return false;">reset</a></div>
+						onclick="if(confirm('This will reset the time log. Are you sure?')) CTimer.reset(); return false;">reset</a></div>
 					solves:<span id="sm_solves">0</span>&nbsp;&nbsp;
 					<span id="avgh">avg</span>:<span id="sm_avg">0.00</span>&nbsp;&nbsp;
 					best:<span id="sm_best">0.00</span>&nbsp;&nbsp;
@@ -74,8 +74,8 @@
 				<div id="tab_times" class="tab_hidden"></div>
 				<div id="tab_breakdowns" class="tab_hidden">
 					<div style="margin-top:20px; text-align:center; width:450px; margin:0 auto">
-						<a href="#" onclick="delStep(); return false">&lt; fewer steps</a> |
-						<a href="#" onclick="addStep(); return false;">more steps &gt;</a></div>				
+						<a href="#" onclick="CTimer.delStep(); return false">&lt; fewer steps</a> |
+						<a href="#" onclick="CTimer.addStep(); return false;">more steps &gt;</a></div>				
 					<table id="breakdown_table">
 						<tr><td class="thead">best:</td><td>0.0</td><td>0.0</td><td></td></tr>
 						<tr><td class="thead">worst:</td><td>0.0</td><td>0.0</td><td></td></tr>
@@ -88,12 +88,12 @@
 				<div id="tab_options" class="tab_hidden">
 					<form action="javascript:void(null)">
 					<ul>
-						<li>Display Timer <a href="#" onclick="toggleConfig(10, this); return false;"><img id="cfimg10" src="check_on.gif" alt=""/></a></li>
-						<li>Centisecond Timing <a href="#" onclick="toggleConfig(9, this); return false;"><img id="cfimg9" src="check_on.gif" alt=""/></a></li>
-						<li>Inspection <input id="config0" type="text" class="inputbox" size="2"  onfocus="setConfig(0, this.value)" onkeyup="setConfig(0, this.value)"/> sec</li>
-						<li>Use dark stylesheet <a href="#" onclick="toggleConfig(1, this); return false;"><img id="cfimg1" src="check_off.gif" alt=""/></a></li>
-						<li>Generate scramble images <a href="#" onclick="toggleConfig(2, this); return false;"><img id="cfimg2" src="check_on.gif" alt=""/></a></li>
-						<li>Use 3x3x3 random-state scrambler <a href="#" onclick="toggleConfig(7, this); return false;"><img id="cfimg7" src="check_off.gif" alt=""/></a>
+						<li>Display Timer <a href="#" onclick="CTimer.toggleConfig(10, this); return false;"><img id="cfimg10" src="check_on.gif" alt=""/></a></li>
+						<li>Centisecond Timing <a href="#" onclick="CTimer.toggleConfig(9, this); return false;"><img id="cfimg9" src="check_on.gif" alt=""/></a></li>
+						<li>Inspection <input id="config0" type="text" class="inputbox" size="2"  onfocus="CTimer.setConfig(0, this.value)" onkeyup="CTimer.setConfig(0, this.value)"/> sec</li>
+						<li>Use dark stylesheet <a href="#" onclick="CTimer.toggleConfig(1, this); return false;"><img id="cfimg1" src="check_off.gif" alt=""/></a></li>
+						<li>Generate scramble images <a href="#" onclick="CTimer.toggleConfig(2, this); return false;"><img id="cfimg2" src="check_on.gif" alt=""/></a></li>
+						<li>Use 3x3x3 random-state scrambler <a href="#" onclick="CTimer.toggleConfig(7, this); return false;"><img id="cfimg7" src="check_off.gif" alt=""/></a>
 							<br/>&nbsp;&nbsp;&nbsp;&nbsp;<small>Requires <em>Sun</em> Java Plugin.
 							2.6 MB auto download on first use, please wait...</small></li>
 					</ul>
@@ -202,37 +202,37 @@
 			</applet>
 		</div-->
 		<div id="pzl_menu" >
-			<table id="pzl_table" class="menu_hidden" onmouseover="showPzlMenu()">
+			<table id="pzl_table" class="menu_hidden" onmouseover="CTimer.showPzlMenu()">
 				<tr><th>Puzzle:</th></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(2); return false;">2x2x2</a></td></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(3); return false;">3x3x3</a></td></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(4); return false;">4x4x4</a></td></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(5); return false;">5x5x5</a></td></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(6); return false;">6x6x6</a></td></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(7); return false;">7x7x7</a></td></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(11); return false;">Square-1</a></td></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(12); return false;">Pyraminx</a></td></tr>
-				<tr><td><a href="#" onclick="selectPuzzle(13); return false;">Megaminx</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(2); return false;">2x2x2</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(3); return false;">3x3x3</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(4); return false;">4x4x4</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(5); return false;">5x5x5</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(6); return false;">6x6x6</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(7); return false;">7x7x7</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(11); return false;">Square-1</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(12); return false;">Pyraminx</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectPuzzle(13); return false;">Megaminx</a></td></tr>
 				<tr><th><hr/></th></tr>
-				<tr><td onmouseover="showTopMenu()">Orientation &gt;</td></tr>
+				<tr><td onmouseover="CTimer.showTopMenu()">Orientation &gt;</td></tr>
 			</table>
-			<table id="top_table" class="menu_hidden" onmouseout="hideTopMenu()" onmouseover="showTopMenu()">
+			<table id="top_table" class="menu_hidden" onmouseout="CTimer.hideTopMenu()" onmouseover="CTimer.showTopMenu()">
 				<tr><th onmouseout="">Top Colour:</th></tr>
-				<tr><td onmouseover="showFrontMenu(0)">Yellow &gt;</td></tr>
-				<tr><td onmouseover="showFrontMenu(1)">White &gt;</td></tr>
-				<tr><td onmouseover="showFrontMenu(2)">Blue &gt;</td></tr>
-				<tr><td onmouseover="showFrontMenu(3)">Green &gt;</td></tr>
-				<tr><td onmouseover="showFrontMenu(4)">Red &gt;</td></tr>
-				<tr><td onmouseover="showFrontMenu(5)">Orange &gt;</td></tr>
+				<tr><td onmouseover="CTimer.showFrontMenu(0)">Yellow &gt;</td></tr>
+				<tr><td onmouseover="CTimer.showFrontMenu(1)">White &gt;</td></tr>
+				<tr><td onmouseover="CTimer.showFrontMenu(2)">Blue &gt;</td></tr>
+				<tr><td onmouseover="CTimer.showFrontMenu(3)">Green &gt;</td></tr>
+				<tr><td onmouseover="CTimer.showFrontMenu(4)">Red &gt;</td></tr>
+				<tr><td onmouseover="CTimer.showFrontMenu(5)">Orange &gt;</td></tr>
 			</table>
-			<table id="front_table" class="menu_hidden" onmouseover="showFrontMenu(-1)" onmouseout="hideFrontMenu()">
+			<table id="front_table" class="menu_hidden" onmouseover="CTimer.showFrontMenu(-1)" onmouseout="CTimer.hideFrontMenu()">
 				<tr><th>Front Colour:</th></tr>
-				<tr><td><a href="#" onclick="selectOri(0); return false;">Yellow</a></td></tr>
-				<tr><td><a href="#" onclick="selectOri(1); return false;">White</a></td></tr>
-				<tr><td><a href="#" onclick="selectOri(2); return false;">Blue</a></td></tr>
-				<tr><td><a href="#" onclick="selectOri(3); return false;">Green</a></td></tr>
-				<tr><td><a href="#" onclick="selectOri(4); return false;">Red</a></td></tr>
-				<tr><td><a href="#" onclick="selectOri(5); return false;">Orange</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectOri(0); return false;">Yellow</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectOri(1); return false;">White</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectOri(2); return false;">Blue</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectOri(3); return false;">Green</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectOri(4); return false;">Red</a></td></tr>
+				<tr><td><a href="#" onclick="CTimer.selectOri(5); return false;">Orange</a></td></tr>
 			</table>
 		</div>
 		<div id="detail_box" class="tab_hidden"><div id="tab_detail"></div></div>

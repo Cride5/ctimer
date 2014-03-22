@@ -80,6 +80,8 @@ em{
 	font-size:0.8em;
 	text-align:left;
 	cursor:default;
+	border-radius:5px;
+	overflow:hidden;
 }
 .menu a{
 	text-decoration:none;
@@ -116,6 +118,12 @@ em{
 	width:600px;
 	margin:0 auto;
 	text-align:left;
+	border-radius: 10px;
+	overflow:hidden;
+
+}
+#fbox div{
+	overflow:auto;
 }
 #summary_box{
 	height:20px;
@@ -272,6 +280,10 @@ em{
 	top:151px;
 	left:0;
 	width:100%;
+}
+#detail_box div{
+	border-radius: 10px;
+	overflow:auto;
 }
 #tab_detail{
 	width:600px;
