@@ -1,19 +1,12 @@
-HOMEPAGE
+### Homepage
+[www.ctimer.co.uk](http://www.ctimer.co.uk)
 
-	http://www.ctimer.co.uk
+### Documentation
+Visit homepage, and click on info tab. Alternatively see source of ctimer.html
 
+### License
+Mozilla Public License Version 2.0
 
-DOCUMENTATION
-
-	Visit homepage, and click on info tab. Alternatively see source of ctimer.html
-
-
-LICENSE
-
-	Mozilla Public License Version 2.0
-
-
-AUTHOR
-
-	Conrad Rider (http://www.crider.co.uk)
+### Author
+[Conrad Rider](http://www.crider.co.uk)
 
