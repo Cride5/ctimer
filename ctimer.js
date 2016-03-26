@@ -994,7 +994,7 @@ var CTimer = (function(){
 	//	img.visibility = "hidden";
 	//debug("showCube(" + img.src + ", " + scramble);
 		if(config[CF_PZL][0] <= 7){
-			img.src = "http://cube.crider.co.uk/visualcube.php?fmt=gif&size=150&pzl=" + config[CF_PZL][0] + "&bg="+
+			img.src = "http://cube.crider.co.uk/visualcube.php?fmt=svg&size=150&pzl=" + config[CF_PZL][0] + "&bg="+
 			(config[CF_STYLE][0] === 0 ? 'w' : 'n') +"&cc="+ (config[CF_STYLE][0] === 0 ? 'n' : 'd') + "&alg=" + RTNS[config[CF_RTN][0]] + 
 			(config[CF_SCIMG][0] === 1 && config[CF_PZL][0] < 11 ? scramble : "") + "&nocache";
 		}
