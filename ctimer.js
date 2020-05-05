@@ -1,6 +1,6 @@
 /*
 File: cTimer.js
-Author: Conrad Rider (www.crider.co.uk)
+Author: Conrad Rider (www.rider.biz)
 Date: 20/11/09
 Copyright 2009: All rights reserved.
 
@@ -19,14 +19,14 @@ TODO:
 
 
 var CTimer = (function(){
-	
+
 	// Constructor
 	var CTimer = function(){};
 
 
 	// Constants
-	
-	var 
+
+	var
 	FACES = ['U', 'R', 'F', 'D', 'L', 'B'],
 	FACES2 = ['u', 'r', 'f', 'd', 'l', 'b'],
 	FACES3 = ['U', 'R', 'F', 'D', 'L', 'B', 'u', 'r', 'f', 'd', 'l', 'b', '3u', '3r', '3f', '3d', '3l', '3b'],
@@ -112,12 +112,12 @@ var CTimer = (function(){
 			[3, TYNUM], // Puzzle type
 			[1, TYBUL], // Display Centiseconds
 			[1, TYBUL]  // Display Timer
-		]; 
+		];
 		checkboxes = [CF_STYLE, CF_SCIMG, CF_RSTAT, CF_CENTI, CF_SHOW];
 
 	//debug("config["+9+"][0]:" + config);
 
-		// Read cookies and display config 
+		// Read cookies and display config
 		for(var i = 0; i < config.length; i++){
 			var cv = readCookie("ctimer" + i);
 			// For strings just import direct
@@ -346,7 +346,7 @@ var CTimer = (function(){
 		initTimer();
 		waitingScramble = null;
 		genScramble(false);
-		setTimeout(genScrambleDelayed,50);  
+		setTimeout(genScrambleDelayed,50);
 	};
 
 	// Adds a step to multi-stage statistics
@@ -354,8 +354,8 @@ var CTimer = (function(){
 		if(processing) return; processing = true;
 		if(iSolve > 0 && !confirm("This will reset the current time log. Are you sure?")){
 			processing = false;
-			return;	
-		}	
+			return;
+		}
 		CTimer.reset();
 		nSteps++;
 		addBrkCols();
@@ -387,7 +387,7 @@ var CTimer = (function(){
 
 	// Removes a step from multi-stage statistics, and clears stats
 	CTimer.delStep = function(){
-		if(processing) return; processing = true;	
+		if(processing) return; processing = true;
 		var table = document.getElementById("breakdown_table");
 		if(nSteps <= 1 || (iSolve > 0 && !confirm("This will reset the current time log. Are you sure?"))){
 			processing = false;
@@ -550,7 +550,7 @@ var CTimer = (function(){
 	CTimer.startTimer = function(event){
 		var now = getTimeNow();
 		// allow multiple keys to be pressed when first starting the timer
-		if(kdown) kdown = false; else if(state !== READY) return; 
+		if(kdown) kdown = false; else if(state !== READY) return;
 	//debug("key=" + event.keyCode + ",iSep:" + iStep + ",nStep:" + nSteps + " state:" + state);
 		// Filter for a valid key
 		if(event && !(event.keyCode === 32 ||
@@ -679,7 +679,7 @@ var CTimer = (function(){
 	//debug("assigned waiting scramble:" + waitingScramble);
 			scrambles[iSolve] = waitingScramble;
 			waitingScramble = null;
-			setTimeout(genScrambleDelayed,50);  
+			setTimeout(genScrambleDelayed,50);
 		}
 		// If the delayed scramble generator isn't finished then just generate one now
 		else scrambles[iSolve] = genScramble_();
@@ -833,16 +833,16 @@ var CTimer = (function(){
 	var displayTime = function(millis, idx){
 		var fTime = formatTime2(millis);
 		document.getElementById("time").innerHTML = fTime;
-		document.getElementById("breakdown_table").rows[idx + 5].cells[nSteps + 1].innerHTML = fTime;	
+		document.getElementById("breakdown_table").rows[idx + 5].cells[nSteps + 1].innerHTML = fTime;
 	};
 
 	// Updates the time during timing
 	var updateTime = function(time){
 		var fTime = formatTime(time - startTime[0]);
-		document.getElementById("time").innerHTML = state === RUNNING && !config[CF_SHOW][0] ? "&#133;" : 
+		document.getElementById("time").innerHTML = state === RUNNING && !config[CF_SHOW][0] ? "&#133;" :
 			state === RUNNING && !config[CF_CENTI][0] ? formatTimeShort(time - startTime[0]) : fTime;
-		document.getElementById("breakdown_table").rows[iSolve + 5].cells[nSteps + 1].innerHTML = fTime;	
-		document.getElementById("breakdown_table").rows[iSolve + 5].cells[iStep + 1].innerHTML = formatTime(time - startTime[iStep]);	
+		document.getElementById("breakdown_table").rows[iSolve + 5].cells[nSteps + 1].innerHTML = fTime;
+		document.getElementById("breakdown_table").rows[iSolve + 5].cells[iStep + 1].innerHTML = formatTime(time - startTime[iStep]);
 	};
 
 
@@ -994,8 +994,8 @@ var CTimer = (function(){
 	//	img.visibility = "hidden";
 	//debug("showCube(" + img.src + ", " + scramble);
 		if(config[CF_PZL][0] <= 7){
-			img.src = "http://cube.crider.co.uk/visualcube.php?fmt=svg&size=150&pzl=" + config[CF_PZL][0] + "&bg="+
-			(config[CF_STYLE][0] === 0 ? 'w' : 'n') +"&cc="+ (config[CF_STYLE][0] === 0 ? 'n' : 'd') + "&alg=" + RTNS[config[CF_RTN][0]] + 
+			img.src = "http://cube.rider.biz/visualcube.php?fmt=svg&size=150&pzl=" + config[CF_PZL][0] + "&bg="+
+			(config[CF_STYLE][0] === 0 ? 'w' : 'n') +"&cc="+ (config[CF_STYLE][0] === 0 ? 'n' : 'd') + "&alg=" + RTNS[config[CF_RTN][0]] +
 			(config[CF_SCIMG][0] === 1 && config[CF_PZL][0] < 11 ? scramble : "") + "&nocache";
 		}
 		else if(config[CF_PZL][0] === 11){
@@ -1103,7 +1103,7 @@ var CTimer = (function(){
 			if(avg < 0){
 				if(ia <= iMax){
 				for(var i = iSolve - statSet[ia][0]; i < iSolve; i++)
-					times[i * 2].className = 
+					times[i * 2].className =
 						i === statSet[ia][1] ? "hilightbest" :
 						i === statSet[ia][2] ? "hilightworst" :
 						"hilight";
@@ -1113,7 +1113,7 @@ var CTimer = (function(){
 			}else{
 				if(ia <= iMax && statSet[ia][5] > 0){
 					for(var i = statSet[ia][5] - statSet[ia][0]; i < statSet[ia][5]; i++){
-						times[i * 2].className = 
+						times[i * 2].className =
 							i === statSet[ia][6] ? "hilightbest" :
 							i === statSet[ia][7] ? "hilightworst" :
 							"hilight";
@@ -1223,7 +1223,7 @@ var CTimer = (function(){
 	//debug("checkboxes["+i+"]:" + document.getElementById("cfimg" + checkboxes[i]).src);
 	//debug("config["+checkboxes[i]+"][0]:" + config[checkboxes[i]][0]);
 			document.getElementById("cfimg" + checkboxes[i]).src = config[checkboxes[i]][0] === 0 ?
-				(config[CF_STYLE][0] === 0 ? "check_off.gif" : "check_off_.gif") : 
+				(config[CF_STYLE][0] === 0 ? "check_off.gif" : "check_off_.gif") :
 				(config[CF_STYLE][0] === 0 ? "check_on.gif" : "check_on_.gif");
 		}
 
@@ -1257,7 +1257,7 @@ var CTimer = (function(){
 		// stat sets need to be re-generated
 		if(rebuild){
 			initStatSet();
-			for(var i = statSet[0][0]; i < iSolve; i++) genStatSet(i);	
+			for(var i = statSet[0][0]; i < iSolve; i++) genStatSet(i);
 		}
 		for(var j = 0; j <= nSteps; j++){
 			statsBest[j] = 0;
@@ -1571,7 +1571,7 @@ var CTimer = (function(){
 			}
 			timeData[i][nSteps] = total;
 		}
-	//debug("timeData[iSolve-1]=" + timeData[iSolve-1]);	
+	//debug("timeData[iSolve-1]=" + timeData[iSolve-1]);
 	};
 	var saveScrambles = function(){
 	//debug("save scrambles:" + scrambles);
@@ -1623,7 +1623,7 @@ var CTimer = (function(){
 				out += ((n2 & (1 << 5)) === 0 ? "U' " : "U  ");
 			}
 
-		}	
+		}
 	//debug("in:" + inp + ", out:" + out);
 		return out;
 	};
@@ -1715,7 +1715,7 @@ var CTimer = (function(){
 	var enableJava = function(toEnable){
 		if(toEnable){
 			if(document.getElementById("applet_box").innerHTML === ""){
-				document.getElementById("applet_box").innerHTML = 
+				document.getElementById("applet_box").innerHTML =
 				'<applet  name="scrambleApplet" id="scrambleAppletId" codebase="." archive="JCubeExplorer.jar"' +
 				'code="org.kociemba.twophase.ScramblerApplet" ' +
 				'width="1" height="1" MAYSCRIPT>' +
@@ -1749,8 +1749,8 @@ var CTimer = (function(){
 		document.getElementById("footer").innerHTML += "<br/>\n" + msg;
 	};
 
-	
+
 	return CTimer;
-	
+
 })();
 

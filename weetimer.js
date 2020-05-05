@@ -1,6 +1,6 @@
 /*
 File: cTimer.js
-Author: Conrad Rider (www.crider.co.uk)
+Author: Conrad Rider (www.rider.biz)
 Date: 20/11/09
 Copyright 2009: All rights reserved.
 
@@ -36,10 +36,10 @@ function init(){
 		[0, TYNUM], // Using random state
 		[3, TYNUM], // Puzzle type
 		[1, TYBUL], // Show current averages (mobile version only)
-	]; 
+	];
 	checkboxes = [CF_STYLE, CF_CAVG];
-	
-	// Read cookies and display config 
+
+	// Read cookies and display config
 	for(var i = 0; i < config.length; i++){
 		var cv = readCookie("ctimer" + i);
 		// For strings just import direct
@@ -107,11 +107,11 @@ function initConstants(){
 	CF_RSTAT = 7;
 	CF_PZL = 8;
 	CF_CAVG = 9; // mobile version only
-	
+
 	TYBUL = 0;
 	TYNUM = 1;
 	TYSTR = 2;
-	
+
 	TABS = ["times", "options", "info"];
 }
 
@@ -284,7 +284,7 @@ function reset(){
 	initTimer();
 	waitingScramble = null;
 	genScramble(false);
-	setTimeout("genScrambleDelayed()",50);  
+	setTimeout("genScrambleDelayed()",50);
 }
 
 // Removes a single solve and updates statistics accordingly
@@ -404,7 +404,7 @@ function mouse_activate(event){
 function startTimer(event){
 	var now = getTimeNow();
 	// allow multiple keys to be pressed when first starting the timer
-	if(kdown) kdown = false; else if(state != READY && event.type != 'mousedown') return; 
+	if(kdown) kdown = false; else if(state != READY && event.type != 'mousedown') return;
 //debug("key=" + event.keyCode + ", state:" + state);
 	// Filter for a valid key
 	if(event && !(event.type == 'mousedown' || event.keyCode == 32 ||
@@ -516,7 +516,7 @@ function genScramble(replace){
 	if(waitingScramble != null){
 		scrambles[iSolve] = waitingScramble;
 		waitingScramble = null;
-		setTimeout("genScrambleDelayed()",50);  
+		setTimeout("genScrambleDelayed()",50);
 	}
 	// If the delayed scramble generator isn't finished then just generate one now
 	else scrambles[iSolve] = genScramble_();
@@ -664,10 +664,10 @@ function logTime(element, time, n){
 }
 
 function displayDetail(){
-	
+
 	// Don't display stats if not available yet
 	if(iSolve == 0 || Math.abs(config[CF_HLI][0]) > getMaxSet(iSolve) + 1) return;
-	
+
 	document.getElementById("tab_detail").innerHTML = 'Generating detailed statistics. Please wait...\n';
 	openDetail();
 	setTimeout("displayDetail2()", 50);
@@ -766,7 +766,7 @@ function selectAvg(avg, user){
 		if(avg < 0){
 			if(ia <= iMax){
 			for(var i = iSolve - statSet[ia][0]; i < iSolve; i++)
-				times[i * 2].className = 
+				times[i * 2].className =
 					i == statSet[ia][1] ? "hilightbest" :
 					i == statSet[ia][2] ? "hilightworst" :
 					"hilight";
@@ -774,7 +774,7 @@ function selectAvg(avg, user){
 		}else{
 			if(ia <= iMax && statSet[ia][5] > 0){
 				for(var i = statSet[ia][5] - statSet[ia][0]; i < statSet[ia][5]; i++){
-					times[i * 2].className = 
+					times[i * 2].className =
 						i == statSet[ia][6] ? "hilightbest" :
 						i == statSet[ia][7] ? "hilightworst" :
 						"hilight";
@@ -865,7 +865,7 @@ function displayStyle(sheet){
 	// Update checkbox images
 	for(var i = 0; i < checkboxes.length; i++){
 		document.getElementById("cfimg" + checkboxes[i]).src = config[checkboxes[i]][0] == 0 ?
-			(config[CF_STYLE][0] == 0 ? "check_off.gif" : "check_off_.gif") : 
+			(config[CF_STYLE][0] == 0 ? "check_off.gif" : "check_off_.gif") :
 			(config[CF_STYLE][0] == 0 ? "check_on.gif" : "check_on_.gif");
 	}
 }
@@ -885,7 +885,7 @@ function genStats(rebuild){
 		resetStats();
 		return;
 	}
-	
+
 	// Unhilight the currently hilighted avg
 	var curhl = config[CF_HLI][0];
 	if(!rebuild){
@@ -894,12 +894,12 @@ function genStats(rebuild){
 		clearHilightedAvg();
 		iSolve++;
 	}
-	
+
 	// If full generate, rather than incramental update, then all
 	// stat sets need to be re-generated
 	if(rebuild){
 		initStatSet();
-		for(var i = statSet[0][0]; i < iSolve; i++) genStatSet(i);	
+		for(var i = statSet[0][0]; i < iSolve; i++) genStatSet(i);
 	}
 
 	statsBest = 0;
@@ -934,11 +934,11 @@ function genStats(rebuild){
 
 	// Display stats in the summary heading
 	document.getElementById("sm_no").innerHTML = iSolve;
-	
+
 	// Highlight the updated avg
 	if(!rebuild) selectAvg(curhl, false);
 	displaySelectedAvg();
-	
+
 
 }
 
@@ -947,7 +947,7 @@ function genStatSet(idx){
 	// Iterate for that many elements to calculate rolling averages/standard deviations
 	var maxSet = getMaxSet(idx);
 	if(maxSet == -1) return maxSet;
-	
+
 	// Initialise statSet variables
 	for(var j = 0; j <= maxSet; j++){
 		statSet[j][1] = idx-1; // Current Min
@@ -986,7 +986,7 @@ function genStatSet(idx){
 		if(statSet[j][3] < Number.MAX_VALUE) statSet[j][3] = round10(statSet[j][3]);
 //debug("result" + idx + ": " + statSet[j][3]);
 	}
-	
+
 	// Calculate square of difference from mean
 	for(var i = idx - statSet[maxSet][0]; i < idx; i++){
 		for(var j = 0; j <= maxSet; j++){
@@ -1010,7 +1010,7 @@ function genStatSet(idx){
 			statSet[j][9] = statSet[j][4];
 		}
 	}
-	
+
 	return maxSet;
 }
 
@@ -1173,8 +1173,8 @@ function inflateScr(inp){
 				out += (j % 2 == 1 ? "R" : "D") + ((n2 & (1 << j)) == 0 ? "-- " : "++ ");
 			out += ((n2 & (1 << 5)) == 0 ? "U' " : "U  ");
 		}
-		
-	}	
+
+	}
 //debug("in:" + inp + ", out:" + out);
 	return out;
 }

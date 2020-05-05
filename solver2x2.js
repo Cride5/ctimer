@@ -1,6 +1,6 @@
 /*
 File: solver2x2.js
-Authors: Jaap Scherphuis (www.jaapsch.net) and Conrad Rider (www.crider.co.uk)
+Authors: Jaap Scherphuis (www.jaapsch.net) and Conrad Rider (www.rider.biz)
 Date: 10/21/09
 Copyright 2009: All rights reserved.
 Description: Random-state scrambler and solver for the 2x2 cube
@@ -16,7 +16,7 @@ function initSolver2x2(){
 		0,0,0,0,
 		3,3,3,3,
 		4,4,4,4,
-		5,5,5,5); 
+		5,5,5,5);
 	piece = new Array(
 		15,16,16,21,21,15,
 		13,9,9,17,17,13,
@@ -34,10 +34,10 @@ function genScramble2x2(lim){
 	do{
 		// Generate random permutation
 		var q = Math.floor(Math.random() * 5040);
-	
+
 		// Generate random orientation
 		var t = Math.floor(Math.random() * 729);
-	
+
 		// Solve the scramble
 		sol=new Array();
 		if(q!=0 || t!=0){

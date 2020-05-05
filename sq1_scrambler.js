@@ -1,7 +1,7 @@
 /*
 File: sq1_scrambler.js
 Author: Jaap Scherphuis (www.jaapsch.net)
-Modified by: Conrad Rider (www.crider.co.uk)
+Modified by: Conrad Rider (www.rider.biz)
 Date: 17/01/10
 Copyright 2010: All rights reserved.
 Description: Scrambler for the Saquare-1
@@ -32,7 +32,7 @@ function genScrambleSq1(seqlen){
 		else { ls=0; f++; }
 		seq[i] = j;
 	}
-	
+
 	var s="",i,k,l=-1;
 	for(i = 0; i < seq.length; i++){
 		k=seq[i];
