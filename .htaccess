@@ -4,7 +4,8 @@ DirectoryIndex ctimer.html
 RewriteEngine On
 
 # redirect /wee to /weetimer.html
-RewriteRule ^wee$ http://www.ctimer.co.uk/weetimer.html [NC,P,L]
+RewriteRule ^wee$ http://ctimer.rider.biz/weetimer.html [NC,P,L]
 
 RewriteCond %{HTTP_HOST} ^(m\.ctimer\.co.uk)$
 RewriteRule "^$" "/weetimer.html" [NC,L]
+
