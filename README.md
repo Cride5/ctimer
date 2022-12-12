@@ -1,5 +1,5 @@
 ### Homepage
-[www.ctimer.co.uk](http://www.ctimer.co.uk)
+[ctimer.rider.biz](http://ctimer.rider.biz)
 
 ### Documentation
 Visit homepage, and click on info tab. Alternatively see source of ctimer.html
@@ -8,5 +8,5 @@ Visit homepage, and click on info tab. Alternatively see source of ctimer.html
 Mozilla Public License Version 2.0
 
 ### Author
-[Conrad Rider](http://www.rider.biz)
+[Conrad Rider](http://rider.biz)
 
